@@ -11,3 +11,6 @@
 
 .cursor-spark{position:fixed;left:0;top:0;width:28px;height:28px;z-index:1000;pointer-events:none;opacity:0;will-change:transform;filter:drop-shadow(0 0 5px #b38bff50)}.cursor-spark-icon{width:100%;height:100%;display:block;transform-origin:center;will-change:transform}
 @media(pointer:coarse),(prefers-reduced-motion:reduce){.cursor-spark{display:none}}
+/* The supplied mark is transparent; the white treatment fits the dark site. */
+.brand-logo{width:92px;height:92px;object-fit:contain;filter:brightness(0) invert(1)}.header{height:112px}.footer .brand-logo{width:115px;height:115px}.header .brand{gap:0}
+@media(max-width:760px){.header{height:92px}.brand-logo{width:78px;height:78px}.footer .brand-logo{width:96px;height:96px}}
