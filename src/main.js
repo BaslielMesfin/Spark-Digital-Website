@@ -60,7 +60,7 @@ try{sparkEnabled=localStorage.getItem('spark-cursor')!=='off';}catch{}
 const setSpark=gsap.quickSetter(cursorSpark,'css');
 function updateToggle(){
  sparkToggle.setAttribute('aria-pressed',String(sparkEnabled));
- sparkToggle.innerHTML=`<span>✳</span> Cursor spark: ${sparkEnabled?'on':'off'}`;
+ sparkToggle.innerHTML=`<span><svg class="spark-symbol" aria-hidden="true" viewBox="0 0 100 100"><use href="/images/spark-symbol.svg#spark-star"></use></svg></span> Cursor spark: ${sparkEnabled?'on':'off'}`;
  if(!sparkEnabled)gsap.set(cursorSpark,{opacity:0});
 }
 updateToggle();

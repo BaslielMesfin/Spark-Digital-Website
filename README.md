@@ -23,7 +23,15 @@ The selected project visuals come from the existing Timeless Marketing, NRE Empl
 
 ## Branding
 
-The supplied Spark Digital logo is stored with a transparent background and rendered in white in the header and footer. The cursor and favicon use a separate vector star inspired by the eight-point symbol inside the logo. Cursor easing and spring inertia remain unchanged.
+The supplied Spark Digital logo is stored with a transparent background and rendered in white in the header and footer. The cursor and small brand accents use a separate vector star inspired by the eight-point symbol inside the logo. Browser favicons and touch icons use the simplified main logo mark. Cursor easing and spring inertia remain unchanged.
+
+## Link previews and browser icons
+
+A branded 1200 × 630 social card is wired into Open Graph and X sharing metadata. SVG and PNG favicons, an Apple touch icon, and browser-mode manifest icons are included.
+
+When the site is deployed, set VITE_SITE_URL to its real public origin. Vite then supplies absolute preview-image, canonical, and Open Graph page URLs. Until then, local previews use relative asset paths; no domain is invented.
+
+Future official logo variants can replace the current transparent asset without changing the page layout. The cursor movement settings remain unchanged.
 
 ## Source
 
