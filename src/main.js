@@ -53,7 +53,7 @@ if(!reducedMotion){
 const cursorSpark=document.querySelector('#cursor-spark');
 const sparkIcon=cursorSpark.querySelector('img');
 const sparkToggle=document.querySelector('#spark-toggle');
-const follower={x:0,y:0};
+const follower={x:0,y:0,vx:0,vy:0};
 const mouse={x:0,y:0};
 let sparkEnabled=true,seenPointer=false,pointerActive=false;
 try{sparkEnabled=localStorage.getItem('spark-cursor')!=='off';}catch{}
@@ -88,9 +88,15 @@ function followSpark(){
  const visible=sparkEnabled&&seenPointer&&pointerActive&&!dialog.open;
  const targetX=Math.max(3,Math.min(mouse.x+12,innerWidth-31));
  const targetY=Math.max(3,Math.min(mouse.y+12,innerHeight-31));
- const blend=1-Math.exp(-delta*18);
- const distanceX=targetX-follower.x;
- follower.x+=distanceX*blend;follower.y+=(targetY-follower.y)*blend;
+ // A critically damped spring adds acceleration and inertia without bouncing.
+ // Exact integration keeps the same gentle response at different frame rates.
+ const spring=11,decay=Math.exp(-spring*delta);
+ for(const [axis,velocity,target] of [['x','vx',targetX],['y','vy',targetY]]){
+  const offset=follower[axis]-target;
+  const impulse=(follower[velocity]+spring*offset)*delta;
+  follower[axis]=target+(offset+impulse)*decay;
+  follower[velocity]=(follower[velocity]-spring*impulse)*decay;
+ }
  setSpark({x:follower.x,y:follower.y,opacity:visible?1:0});
 }
 gsap.ticker.add(followSpark);
